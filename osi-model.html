@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OSI Model — ITBase</title>
+  <link rel="stylesheet" href="styles/main.css" />
+</head>
+<body>
+<div id="navbar-placeholder"></div>
+<main>
+
+  <!-- ── PAGE HERO ── -->
+  <header class="page-hero">
+    <div class="page-hero-inner">
+      <div class="breadcrumb"><a href="index.html">Home</a> / OSI Model</div>
+      <div class="tags"><span class="tag tag-blue">NETWORKING</span><span class="tag tag-cyan">BEGINNER FRIENDLY</span></div>
+      <h1>🌐 The OSI Model</h1>
+      <p>The 7-layer framework that defines how data travels from one computer to another across any network.</p>
+    </div>
+  </header>
+
+  <div class="section-inner" style="max-width:900px;margin:0 auto;padding:0 1.5rem;">
+
+    <!-- ── BEGINNER EXPLANATION ── -->
+    <section class="section">
+      <div class="sec-label sec-label-cyan">📖 EXPLAIN LIKE I'M A BEGINNER</div>
+      <h2 class="sec-title">What is the <span class="accent-cyan">OSI Model?</span></h2>
+      <p class="sec-sub">Think of sending a letter internationally. You write it, fold it, put it in an envelope, address it, drop it at the post office — then carriers, sorting facilities, and customs handle it. The OSI Model is the same idea, but for data.</p>
+
+      <div class="info-box ib-cyan reveal">
+        <span class="ib-label">💡 THE ANALOGY</span>
+        <strong>Imagine a restaurant kitchen:</strong> the customer (Layer 7) places an order, the waiter translates it (Layer 6), a table is reserved (Layer 5), the order is verified (Layer 4), routed to the right station (Layer 3), plated (Layer 2), and physically delivered (Layer 1). Each layer has its own job.
+      </div>
+
+      <!-- ── OSI STACK INFOGRAPHIC ── -->
+      <div class="sec-label sec-label-purple mt-3 reveal">🧩 THE 7-LAYER INFOGRAPHIC</div>
+      <p style="font-size:0.82rem;color:var(--text2);margin-bottom:1rem;" class="reveal">Click any layer to highlight it. Data flows <strong>top → bottom</strong> when sending, <strong>bottom → top</strong> when receiving.</p>
+
+      <div class="osi-stack reveal">
+        <div class="osi-layer osi-7" data-tip="HTTP, HTTPS, FTP, SMTP, DNS — apps you use every day">
+          <div class="osi-num">7</div>
+          <div class="osi-name">Application</div>
+          <div class="osi-desc">User-facing network services</div>
+          <div class="osi-example">HTTP · FTP · DNS</div>
+        </div>
+        <div class="osi-layer osi-6" data-tip="Converts data formats, handles encryption/decryption (TLS/SSL)">
+          <div class="osi-num">6</div>
+          <div class="osi-name">Presentation</div>
+          <div class="osi-desc">Data translation, encryption, compression</div>
+          <div class="osi-example">TLS · JPEG · ASCII</div>
+        </div>
+        <div class="osi-layer osi-5" data-tip="Opens, manages and closes sessions between applications">
+          <div class="osi-num">5</div>
+          <div class="osi-name">Session</div>
+          <div class="osi-desc">Manages connections between apps</div>
+          <div class="osi-example">NetBIOS · RPC</div>
+        </div>
+        <div class="osi-layer osi-4" data-tip="TCP = reliable delivery. UDP = fast but no guarantee. Ports live here.">
+          <div class="osi-num">4</div>
+          <div class="osi-name">Transport</div>
+          <div class="osi-desc">End-to-end delivery, ports, TCP/UDP</div>
+          <div class="osi-example">TCP · UDP</div>
+        </div>
+        <div class="osi-layer osi-3" data-tip="Routers live here. IP addresses are Layer 3. This is where packets are routed across the internet.">
+          <div class="osi-num">3</div>
+          <div class="osi-name">Network</div>
+          <div class="osi-desc">IP addressing, routing between networks</div>
+          <div class="osi-example">IP · ICMP · Routers</div>
+        </div>
+        <div class="osi-layer osi-2" data-tip="Switches live here. MAC addresses identify devices on the same network segment.">
+          <div class="osi-num">2</div>
+          <div class="osi-name">Data Link</div>
+          <div class="osi-desc">MAC addresses, frame delivery on same network</div>
+          <div class="osi-example">Ethernet · MAC · Switches</div>
+        </div>
+        <div class="osi-layer osi-1" data-tip="Actual bits — voltage levels, fiber optics, radio waves. The physical cables and signals.">
+          <div class="osi-num">1</div>
+          <div class="osi-name">Physical</div>
+          <div class="osi-desc">Bits, cables, signals, hardware</div>
+          <div class="osi-example">Cables · Fiber · WiFi</div>
+        </div>
+      </div>
+
+      <!-- ── DATA ENCAPSULATION FLOW ── -->
+      <div class="sec-label sec-label-blue mt-4 reveal">🔄 DATA ENCAPSULATION — HOW IT ACTUALLY WORKS</div>
+      <p style="font-size:0.82rem;color:var(--text2);margin-bottom:1rem;" class="reveal">When you send data, each layer <strong>wraps</strong> it with a header (like putting a letter in bigger and bigger envelopes).</p>
+
+      <div class="flow-diagram vertical reveal">
+        <div class="flow-row">
+          <div class="flow-node fn-purple" style="min-width:130px;">L7–5: Data</div>
+          <div style="font-size:0.75rem;color:var(--text3);padding-left:1rem;">Application data (your email text, webpage HTML)</div>
+        </div>
+        <div class="flow-arrow down" style="padding:4px 0 4px 65px;"></div>
+        <div class="flow-row">
+          <div class="flow-node fn-blue" style="min-width:130px;">L4: Segment</div>
+          <div style="font-size:0.75rem;color:var(--text3);padding-left:1rem;">TCP header added — source/destination port numbers</div>
+        </div>
+        <div class="flow-arrow down" style="padding:4px 0 4px 65px;"></div>
+        <div class="flow-row">
+          <div class="flow-node fn-cyan" style="min-width:130px;">L3: Packet</div>
+          <div style="font-size:0.75rem;color:var(--text3);padding-left:1rem;">IP header added — source/destination IP addresses</div>
+        </div>
+        <div class="flow-arrow down" style="padding:4px 0 4px 65px;"></div>
+        <div class="flow-row">
+          <div class="flow-node fn-green" style="min-width:130px;">L2: Frame</div>
+          <div style="font-size:0.75rem;color:var(--text3);padding-left:1rem;">MAC header + trailer added — local network delivery</div>
+        </div>
+        <div class="flow-arrow down" style="padding:4px 0 4px 65px;"></div>
+        <div class="flow-row">
+          <div class="flow-node fn-amber" style="min-width:130px;">L1: Bits</div>
+          <div style="font-size:0.75rem;color:var(--text3);padding-left:1rem;">Converted to 0s and 1s — sent as electrical/optical signals</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ── DEEP DIVE ── -->
+    <section class="section">
+      <div class="sec-label sec-label-purple">🧠 DEEP DIVE</div>
+      <h2 class="sec-title">Layer by layer — <span class="accent-purple">the full story</span></h2>
+
+      <div class="expand-section reveal">
+        <button class="expand-trigger">
+          <span>🟣 Layer 7 — Application Layer</span>
+          <span class="etrigger-icon">▼</span>
+        </button>
+        <div class="expand-body">
+          <div class="expand-body-inner">
+            <p>This is the layer you actually <em>interact with</em>. When you open a browser and type a URL, you're at Layer 7. Protocols like HTTP, HTTPS, SMTP (email), FTP (file transfer), and DNS live here.</p>
+            <p class="mt-1"><strong class="text-purple">Real example:</strong> When you visit google.com, your browser creates an HTTP GET request. That's a Layer 7 action.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="expand-section reveal">
+        <button class="expand-trigger">
+          <span>🟣 Layer 6 — Presentation Layer</span>
+          <span class="etrigger-icon">▼</span>
+        </button>
+        <div class="expand-body">
+          <div class="expand-body-inner">
+            <p>The translator. It converts data between formats your app understands and what can be transmitted. Also handles encryption (TLS/SSL) and compression.</p>
+            <p class="mt-1"><strong class="text-purple">Real example:</strong> When HTTPS encrypts your credit card data before sending — that's Layer 6 encryption via TLS.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="expand-section reveal">
+        <button class="expand-trigger">
+          <span>🔵 Layer 5 — Session Layer</span>
+          <span class="etrigger-icon">▼</span>
+        </button>
+        <div class="expand-body">
+          <div class="expand-body-inner">
+            <p>Opens and closes communication sessions. If you're doing a video call, Layer 5 keeps track of which data belongs to your call vs. someone else's browsing session on the same device.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="expand-section reveal">
+        <button class="expand-trigger">
+          <span>🔵 Layer 4 — Transport Layer</span>
+          <span class="etrigger-icon">▼</span>
+        </button>
+        <div class="expand-body">
+          <div class="expand-body-inner">
+            <p><strong>TCP vs UDP</strong> — this is where the important choice happens:</p>
+            <div class="grid-2 mt-1">
+              <div class="info-box ib-blue">
+                <span class="ib-label">TCP — RELIABLE</span>
+                Guarantees delivery. Data arrives complete and in order. Slower. Used for: web pages, email, file downloads.
+              </div>
+              <div class="info-box ib-amber">
+                <span class="ib-label">UDP — FAST</span>
+                No delivery guarantee. Faster. Some packets may drop. Used for: video calls, gaming, live streaming.
+              </div>
+            </div>
+            <p class="mt-1">Port numbers also live here. Port 80 = HTTP, Port 443 = HTTPS, Port 22 = SSH.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="expand-section reveal">
+        <button class="expand-trigger">
+          <span>🩵 Layer 3 — Network Layer</span>
+          <span class="etrigger-icon">▼</span>
+        </button>
+        <div class="expand-body">
+          <div class="expand-body-inner">
+            <p>This is where <strong>IP addresses</strong> and <strong>routers</strong> live. When data needs to cross from one network to another (like from your home network to Google's servers), Layer 3 figures out the path.</p>
+            <p class="mt-1">Think of IP addresses like postal addresses — they tell the network where to deliver the data globally.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="expand-section reveal">
+        <button class="expand-trigger">
+          <span>🟢 Layer 2 — Data Link Layer</span>
+          <span class="etrigger-icon">▼</span>
+        </button>
+        <div class="expand-body">
+          <div class="expand-body-inner">
+            <p>Handles delivery <em>within</em> a local network. Uses <strong>MAC addresses</strong> (hardware addresses burned into network cards) rather than IP addresses. <strong>Switches</strong> are Layer 2 devices.</p>
+            <p class="mt-1">Think of MAC addresses like apartment numbers within a building — once you're in the right building (IP routing done), you still need the exact apartment (MAC).</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="expand-section reveal">
+        <button class="expand-trigger">
+          <span>🟡 Layer 1 — Physical Layer</span>
+          <span class="etrigger-icon">▼</span>
+        </button>
+        <div class="expand-body">
+          <div class="expand-body-inner">
+            <p>Actual bits — 0s and 1s — transmitted as electrical signals (copper cable), light pulses (fiber optic), or radio waves (WiFi). Hubs, cables, repeaters, and network interface cards (NICs) are Layer 1.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ── REAL WORLD EXAMPLE ── -->
+    <section class="section">
+      <div class="sec-label sec-label-green">🛠️ REAL-WORLD EXAMPLE</div>
+      <h2 class="sec-title">What happens when you <span class="accent-cyan">load a website?</span></h2>
+
+      <div class="steps reveal">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <div class="step-title">You type google.com (Layer 7)</div>
+            <div class="step-body">Your browser creates an HTTP GET request. DNS resolves "google.com" to an IP address like 142.250.80.46.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <div class="step-title">TLS encryption wraps the request (Layer 6)</div>
+            <div class="step-body">Since it's HTTPS, the request gets encrypted so nobody can snoop on your traffic.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <div class="step-title">TCP creates a connection (Layer 4)</div>
+            <div class="step-body">A TCP three-way handshake (SYN → SYN-ACK → ACK) establishes the connection to Google's server on port 443.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <div class="step-title">Routers find the path (Layer 3)</div>
+            <div class="step-body">Your data hops through multiple routers — each one reads the IP address and forwards it closer to Google's data center.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">5</div>
+          <div class="step-content">
+            <div class="step-title">Signals travel the wire (Layers 2 + 1)</div>
+            <div class="step-body">Finally, electrical or light signals carry your bits through cables and switches across the internet.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ── COMMON MISTAKES ── -->
+    <section class="section">
+      <div class="sec-label sec-label-amber">⚠️ COMMON MISTAKES</div>
+      <h2 class="sec-title">What beginners <span class="accent-cyan">get wrong</span></h2>
+      <div class="grid-2 reveal">
+        <div class="info-box ib-red">
+          <span class="ib-label">❌ MISTAKE 1</span>
+          <strong>Confusing Layer 3 (IP) with Layer 2 (MAC).</strong> IP addresses are for routing between networks. MAC addresses are for delivery within a network. They solve different problems.
+        </div>
+        <div class="info-box ib-red">
+          <span class="ib-label">❌ MISTAKE 2</span>
+          <strong>Thinking TCP is always better than UDP.</strong> For live video calls, some dropped packets are fine — but the delay from TCP's resending would make calls unusable.
+        </div>
+        <div class="info-box ib-red">
+          <span class="ib-label">❌ MISTAKE 3</span>
+          <strong>Memorizing without understanding.</strong> Don't just memorize "Please Do Not Throw Sausage Pizza Away." Understand what each layer actually does.
+        </div>
+        <div class="info-box ib-red">
+          <span class="ib-label">❌ MISTAKE 4</span>
+          <strong>Thinking routers are "just Layer 3."</strong> Modern routers often do work at multiple layers (firewall = Layer 4+, NAT = Layer 3/4). The OSI model is a reference, not always a strict reality.
+        </div>
+      </div>
+    </section>
+
+    <!-- ── SUMMARY BOX ── -->
+    <section class="section" style="padding-top:0;">
+      <div class="summary-box reveal">
+        <div class="summary-title">💡 Quick Summary — OSI Model</div>
+        <div class="summary-points">
+          <div class="summary-point">The OSI model has 7 layers — each responsible for a specific part of network communication.</div>
+          <div class="summary-point">Data flows <strong>down</strong> the stack when sending, <strong>up</strong> when receiving — with headers added/removed at each layer.</div>
+          <div class="summary-point">Layer 4 (Transport) — TCP = reliable, UDP = fast. Port numbers live here.</div>
+          <div class="summary-point">Layer 3 (Network) — IP addresses and routers. Gets data between different networks.</div>
+          <div class="summary-point">Layer 2 (Data Link) — MAC addresses and switches. Gets data within the same network.</div>
+          <div class="summary-point">Layer 1 (Physical) — actual bits as electrical signals, light, or radio waves.</div>
+          <div class="summary-point">Mnemonic (top→down): <strong>All People Seem To Need Data Processing</strong></div>
+        </div>
+      </div>
+      <div class="flex gap-sm mt-2 reveal">
+        <a href="computer-components.html" class="btn btn-primary">Next: Computer Hardware →</a>
+        <a href="index.html" class="btn btn-ghost">← All Topics</a>
+      </div>
+    </section>
+
+  </div><!-- /section-inner -->
+</main>
+<div id="footer-placeholder"></div>
+<script src="scripts/main.js"></script>
+</body>
+</html>

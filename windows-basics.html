@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Windows Basics — ITBase</title>
+  <link rel="stylesheet" href="styles/main.css" />
+</head>
+<body>
+<div id="navbar-placeholder"></div>
+<main>
+  <header class="page-hero">
+    <div class="page-hero-inner">
+      <div class="breadcrumb"><a href="index.html">Home</a> / Windows Basics</div>
+      <div class="tags"><span class="tag tag-blue">WINDOWS</span><span class="tag tag-cyan">BEGINNER FRIENDLY</span></div>
+      <h1>🪟 Windows Basics</h1>
+      <p>Understanding the Windows operating system, its architecture, services, and file system.</p>
+    </div>
+  </header>
+  <div class="section-inner" style="max-width:900px;margin:0 auto;padding:0 1.5rem;">
+    <section class="section">
+      <div class="sec-label sec-label-cyan">📖 EXPLAIN LIKE I'M A BEGINNER</div>
+      <h2 class="sec-title">What makes <span class="accent-cyan">Windows tick?</span></h2>
+  <div class="info-box ib-blue reveal"><span class="ib-label">💡 THE ANALOGY</span>Windows is like a hotel. The kernel is the building infrastructure. Services are the staff running in the background (housekeeping, security). Your apps are the guests. The Registry is the hotel's master configuration book.</div>
+  <div class="sec-label sec-label-blue mt-4 reveal">🏗️ WINDOWS ARCHITECTURE</div>
+  <div class="arch-diagram reveal">
+    <div class="arch-row"><div class="arch-node an-blue" style="min-width:300px;">Your Apps (User Space)</div></div>
+    <div class="arch-arrow-down">↓</div>
+    <div class="arch-row"><div class="arch-node an-cyan" style="min-width:300px;">Win32 API / .NET Framework</div></div>
+    <div class="arch-arrow-down">↓</div>
+    <div class="arch-row"><div class="arch-node an-purple" style="min-width:300px;">Windows Kernel (ntoskrnl.exe)</div></div>
+    <div class="arch-arrow-down">↓</div>
+    <div class="arch-row"><div class="arch-node an-gray" style="min-width:300px;">Hardware (CPU / RAM / Disk)</div></div>
+  </div>
+  <div class="sec-label sec-label-purple mt-4 reveal">📁 NTFS FILE SYSTEM KEY PATHS</div>
+  <div class="code-block reveal"><div class="code-lang">WINDOWS PATHS</div>
+  <span class="c-cmd">C:\Windows\System32</span>     <span class="c-cmt"># system files</span><br>
+  <span class="c-cmd">C:\Users\YourName</span>         <span class="c-cmt"># your profile</span><br>
+  <span class="c-cmd">C:\Program Files</span>          <span class="c-cmt"># installed apps (64-bit)</span><br>
+  <span class="c-cmd">C:\Program Files (x86)</span>    <span class="c-cmt"># 32-bit apps</span><br>
+  <span class="c-cmd">C:\Windows\Temp</span>           <span class="c-cmt"># temporary files</span></div>
+  <div class="sec-label sec-label-green mt-3 reveal">⚡ ESSENTIAL WINDOWS COMMANDS</div>
+  <div class="code-block reveal"><div class="code-lang">CMD / POWERSHELL</div>
+  <span class="c-cmd">ipconfig</span>                  <span class="c-cmt"># network config</span><br>
+  <span class="c-cmd">ping</span> google.com           <span class="c-cmt"># test connectivity</span><br>
+  <span class="c-cmd">tasklist</span>                  <span class="c-cmt"># running processes</span><br>
+  <span class="c-cmd">taskkill /PID</span> 1234       <span class="c-cmt"># kill process</span><br>
+  <span class="c-cmd">netstat -an</span>               <span class="c-cmt"># network connections</span><br>
+  <span class="c-cmd">sfc /scannow</span>              <span class="c-cmt"># scan system files</span><br>
+  <span class="c-cmd">regedit</span>                   <span class="c-cmt"># registry editor</span></div>
+  <div class="summary-box reveal"><div class="summary-title">💡 Quick Summary — Windows Basics</div><div class="summary-points">
+    <div class="summary-point">Windows runs on the NT kernel — same core whether it's Windows 10 or Windows Server.</div>
+    <div class="summary-point">The <strong>Registry</strong> is a hierarchical database storing all system and app configuration.</div>
+    <div class="summary-point"><strong>Services</strong> are background processes — managed via services.msc or PowerShell.</div>
+    <div class="summary-point">NTFS supports permissions, encryption, journaling, and file compression.</div>
+    <div class="summary-point">Task Manager (Ctrl+Shift+Esc) is your go-to for monitoring and troubleshooting.</div>
+  </div></div>
+    </section>
+    <section class="section" style="padding-top:0;">
+      <div class="flex gap-sm mt-2 reveal">
+        <a href="docker.html" class="btn btn-primary">Next: Docker →</a>
+        <a href="computer-components.html" class="btn btn-ghost">← Computer Hardware</a>
+      </div>
+    </section>
+  </div>
+</main>
+<div id="footer-placeholder"></div>
+<script src="scripts/main.js"></script>
+</body>
+</html>

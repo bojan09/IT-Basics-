@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Linux Basics — ITBase</title>
+  <link rel="stylesheet" href="styles/main.css" />
+</head>
+<body>
+<div id="navbar-placeholder"></div>
+<main>
+
+  <header class="page-hero">
+    <div class="page-hero-inner">
+      <div class="breadcrumb"><a href="index.html">Home</a> / Linux Basics</div>
+      <div class="tags"><span class="tag tag-green">LINUX</span><span class="tag tag-blue">CLI</span><span class="tag tag-cyan">BEGINNER FRIENDLY</span></div>
+      <h1>🐧 Linux Basics</h1>
+      <p>The OS powering 96% of the world's servers, all Android phones, and the cloud itself. Master the command line.</p>
+    </div>
+  </header>
+
+  <div class="section-inner" style="max-width:900px;margin:0 auto;padding:0 1.5rem;">
+
+    <section class="section">
+      <div class="sec-label sec-label-green">📖 EXPLAIN LIKE I'M A BEGINNER</div>
+      <h2 class="sec-title">What is <span class="accent-cyan">Linux?</span></h2>
+
+      <div class="info-box ib-green reveal">
+        <span class="ib-label">💡 THE ANALOGY</span>
+        Windows and macOS are like pre-built IKEA rooms — nice but limited customization. Linux is like getting raw materials and blueprints — you build exactly what you want, how you want it. It's more work, but you have total control.
+      </div>
+
+      <!-- ── FILESYSTEM TREE ── -->
+      <div class="sec-label sec-label-blue mt-4 reveal">📁 LINUX FILESYSTEM STRUCTURE</div>
+      <div class="arch-diagram reveal">
+        <div class="arch-row">
+          <div class="arch-node an-blue" style="min-width:60px;">/ (root)</div>
+        </div>
+        <div class="arch-arrow-down">↓</div>
+        <div class="arch-row" style="flex-wrap:wrap;gap:0.5rem;justify-content:center;">
+          <div class="arch-node an-cyan">/bin<br><span style="font-size:0.6rem;opacity:0.7;">commands</span></div>
+          <div class="arch-node an-cyan">/etc<br><span style="font-size:0.6rem;opacity:0.7;">configs</span></div>
+          <div class="arch-node an-cyan">/home<br><span style="font-size:0.6rem;opacity:0.7;">users</span></div>
+          <div class="arch-node an-purple">/var<br><span style="font-size:0.6rem;opacity:0.7;">logs/data</span></div>
+          <div class="arch-node an-purple">/tmp<br><span style="font-size:0.6rem;opacity:0.7;">temp files</span></div>
+          <div class="arch-node an-green">/proc<br><span style="font-size:0.6rem;opacity:0.7;">processes</span></div>
+          <div class="arch-node an-amber">/dev<br><span style="font-size:0.6rem;opacity:0.7;">devices</span></div>
+          <div class="arch-node an-gray">/usr<br><span style="font-size:0.6rem;opacity:0.7;">programs</span></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section class="section">
+      <div class="sec-label sec-label-cyan">⌨️ ESSENTIAL COMMANDS</div>
+      <h2 class="sec-title">The commands you'll use <span class="accent-cyan">every single day</span></h2>
+
+      <div class="grid-2 reveal">
+        <div class="card card-glow card-blue">
+          <div class="card-title">📁 Navigation</div>
+          <div class="code-block" style="margin-top:0.75rem;font-size:0.75rem;">
+            <span class="c-cmd">pwd</span>           <span class="c-cmt"># where am I?</span><br>
+            <span class="c-cmd">ls</span> <span class="c-flag">-la</span>        <span class="c-cmt"># list files</span><br>
+            <span class="c-cmd">cd</span> /var/log   <span class="c-cmt"># change dir</span><br>
+            <span class="c-cmd">cd</span> ..         <span class="c-cmt"># go up</span><br>
+            <span class="c-cmd">cd</span> ~          <span class="c-cmt"># go home</span>
+          </div>
+        </div>
+        <div class="card card-glow card-green">
+          <div class="card-title">📄 Files</div>
+          <div class="code-block" style="margin-top:0.75rem;font-size:0.75rem;">
+            <span class="c-cmd">cat</span> file.txt  <span class="c-cmt"># view file</span><br>
+            <span class="c-cmd">cp</span> a.txt b/    <span class="c-cmt"># copy</span><br>
+            <span class="c-cmd">mv</span> a.txt c/    <span class="c-cmt"># move/rename</span><br>
+            <span class="c-cmd">rm</span> file.txt    <span class="c-cmt"># delete</span><br>
+            <span class="c-cmd">touch</span> new.txt  <span class="c-cmt"># create</span>
+          </div>
+        </div>
+        <div class="card card-glow card-purple">
+          <div class="card-title">🔒 Permissions</div>
+          <div class="code-block" style="margin-top:0.75rem;font-size:0.75rem;">
+            <span class="c-cmd">chmod</span> 755 script.sh<br>
+            <span class="c-cmd">chown</span> user:group file<br>
+            <span class="c-cmd">sudo</span> &lt;command&gt;<br>
+            <span class="c-cmt"># rwx = 4+2+1 = 7</span><br>
+            <span class="c-cmt"># owner/group/other</span>
+          </div>
+        </div>
+        <div class="card card-glow card-amber">
+          <div class="card-title">🔍 Search & Process</div>
+          <div class="code-block" style="margin-top:0.75rem;font-size:0.75rem;">
+            <span class="c-cmd">grep</span> <span class="c-str">"error"</span> log.txt<br>
+            <span class="c-cmd">find</span> / <span class="c-flag">-name</span> <span class="c-str">"*.conf"</span><br>
+            <span class="c-cmd">ps</span> aux<br>
+            <span class="c-cmd">kill</span> <span class="c-flag">-9</span> &lt;PID&gt;<br>
+            <span class="c-cmd">top</span>  <span class="c-cmt"># live processes</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── PERMISSIONS VISUAL ── -->
+      <div class="sec-label sec-label-amber mt-4 reveal">🔑 PERMISSIONS EXPLAINED VISUALLY</div>
+      <div class="card reveal" style="font-family:var(--f-mono);">
+        <div style="font-size:1.4rem;letter-spacing:0.15em;margin-bottom:1rem;color:var(--cyan);">-rwxr-xr--</div>
+        <div class="grid-3" style="gap:0.5rem;">
+          <div class="info-box ib-blue" style="margin:0;">
+            <span class="ib-label">OWNER</span>
+            <strong>rwx</strong> = 7<br>
+            <span style="font-size:0.72rem;">read + write + execute</span>
+          </div>
+          <div class="info-box ib-purple" style="margin:0;">
+            <span class="ib-label">GROUP</span>
+            <strong>r-x</strong> = 5<br>
+            <span style="font-size:0.72rem;">read + execute only</span>
+          </div>
+          <div class="info-box ib-green" style="margin:0;">
+            <span class="ib-label">OTHERS</span>
+            <strong>r--</strong> = 4<br>
+            <span style="font-size:0.72rem;">read only</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section class="section">
+      <div class="sec-label sec-label-purple">⚙️ PACKAGE MANAGEMENT</div>
+      <h2 class="sec-title">Installing software on <span class="accent-purple">Linux</span></h2>
+      <div class="code-block reveal">
+        <div class="code-lang">APT (UBUNTU/DEBIAN)</div>
+        <span class="c-cmd">sudo apt update</span>           <span class="c-cmt"># refresh package list</span><br>
+        <span class="c-cmd">sudo apt upgrade</span>          <span class="c-cmt"># upgrade all packages</span><br>
+        <span class="c-cmd">sudo apt install</span> nginx    <span class="c-cmt"># install nginx</span><br>
+        <span class="c-cmd">sudo apt remove</span> nginx     <span class="c-cmt"># remove nginx</span><br>
+        <span class="c-cmd">apt search</span> postgresql     <span class="c-cmt"># search for package</span>
+      </div>
+
+      <div class="sec-label sec-label-green mt-3 reveal">🔄 PIPES AND REDIRECTION — LINUX SUPERPOWER</div>
+      <div class="code-block reveal">
+        <div class="code-lang">BASH</div>
+        <span class="c-cmt"># Pipe: send output of one command to another</span><br>
+        <span class="c-cmd">ps</span> aux | <span class="c-cmd">grep</span> nginx<br>
+        <span class="c-cmd">cat</span> /etc/passwd | <span class="c-cmd">sort</span> | <span class="c-cmd">head</span> -5<br>
+        <br>
+        <span class="c-cmt"># Redirect output to a file</span><br>
+        <span class="c-cmd">echo</span> <span class="c-str">"hello"</span> &gt; file.txt    <span class="c-cmt"># overwrite</span><br>
+        <span class="c-cmd">echo</span> <span class="c-str">"world"</span> &gt;&gt; file.txt  <span class="c-cmt"># append</span><br>
+        <span class="c-cmd">ls</span> /etc 2&gt; errors.txt    <span class="c-cmt"># redirect errors</span>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section class="section">
+      <div class="sec-label sec-label-amber">⚠️ COMMON MISTAKES</div>
+      <h2 class="sec-title">What beginners <span class="accent-cyan">get wrong</span></h2>
+      <div class="grid-2 reveal">
+        <div class="info-box ib-red"><span class="ib-label">❌ MISTAKE 1</span><strong>Running everything as root.</strong> Always work as a regular user. Use sudo only when necessary. <code>rm -rf /</code> as root = disaster.</div>
+        <div class="info-box ib-red"><span class="ib-label">❌ MISTAKE 2</span><strong>Forgetting sudo apt update before install.</strong> Always update the package list first, or you'll install an outdated version.</div>
+        <div class="info-box ib-red"><span class="ib-label">❌ MISTAKE 3</span><strong>Using spaces in filenames.</strong> <code>my file.txt</code> is two arguments to a command. Use underscores: <code>my_file.txt</code>.</div>
+        <div class="info-box ib-red"><span class="ib-label">❌ MISTAKE 4</span><strong>Not reading error messages.</strong> Linux error messages tell you exactly what's wrong. Read them carefully — they're not cryptic once you learn them.</div>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:0;">
+      <div class="summary-box reveal">
+        <div class="summary-title">💡 Quick Summary — Linux Basics</div>
+        <div class="summary-points">
+          <div class="summary-point">Linux uses a single root <strong>/</strong> filesystem — everything is a file, including devices and processes.</div>
+          <div class="summary-point">Essential commands: <strong>ls, cd, cat, cp, mv, rm, grep, find, ps, chmod</strong>.</div>
+          <div class="summary-point">Permissions: <strong>rwx</strong> for owner/group/others. Numeric: 7=full, 5=read+exec, 4=read only.</div>
+          <div class="summary-point">The pipe <strong>|</strong> is Linux's superpower — chain commands together.</div>
+          <div class="summary-point">Use <strong>sudo apt update && sudo apt install</strong> to install software on Ubuntu/Debian.</div>
+        </div>
+      </div>
+      <div class="flex gap-sm mt-2 reveal">
+        <a href="docker.html" class="btn btn-primary">Next: Docker →</a>
+        <a href="computer-components.html" class="btn btn-ghost">← Computer Hardware</a>
+      </div>
+    </section>
+
+  </div>
+</main>
+<div id="footer-placeholder"></div>
+<script src="scripts/main.js"></script>
+</body>
+</html>

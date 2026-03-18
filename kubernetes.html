@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kubernetes — ITBase</title>
+  <link rel="stylesheet" href="styles/main.css" />
+</head>
+<body>
+<div id="navbar-placeholder"></div>
+<main>
+
+  <header class="page-hero">
+    <div class="page-hero-inner">
+      <div class="breadcrumb"><a href="index.html">Home</a> / Kubernetes</div>
+      <div class="tags"><span class="tag tag-blue">ORCHESTRATION</span><span class="tag tag-cyan">DEVOPS</span><span class="tag tag-purple">CLOUD</span></div>
+      <h1>☸️ Kubernetes</h1>
+      <p>The container orchestration system that automatically manages, scales, and heals containerized applications.</p>
+    </div>
+  </header>
+
+  <div class="section-inner" style="max-width:900px;margin:0 auto;padding:0 1.5rem;">
+
+    <section class="section">
+      <div class="sec-label sec-label-blue">📖 EXPLAIN LIKE I'M A BEGINNER</div>
+      <h2 class="sec-title">What is <span class="accent-blue">Kubernetes?</span></h2>
+
+      <div class="info-box ib-blue reveal">
+        <span class="ib-label">💡 THE ANALOGY</span>
+        Docker gives you containers. Kubernetes is the <strong>shipping company</strong> that manages fleets of those containers. It decides which ship (server) carries which container, automatically replaces broken containers, scales up when demand spikes, and balances the load — all without you manually intervening.
+      </div>
+
+      <!-- ── ARCHITECTURE DIAGRAM ── -->
+      <div class="sec-label sec-label-cyan mt-4 reveal">🧩 KUBERNETES ARCHITECTURE</div>
+      <div class="arch-diagram reveal">
+        <div class="arch-row">
+          <div class="arch-node an-blue" style="min-width:140px;">👤 kubectl (You)</div>
+        </div>
+        <div class="arch-arrow-down">↓ sends commands to</div>
+        <div class="arch-row">
+          <div class="arch-node an-cyan" style="min-width:200px;">🧠 API Server (Control Plane)</div>
+        </div>
+        <div class="arch-arrow-down">↓ distributed to</div>
+        <div class="arch-row" style="gap:0.75rem;">
+          <div class="arch-node an-purple">📅 Scheduler</div>
+          <div class="arch-node an-purple">🎛️ Controller Manager</div>
+          <div class="arch-node an-purple">🗄️ etcd (state)</div>
+        </div>
+        <div class="arch-arrow-down">↓ manages</div>
+        <div class="arch-row" style="gap:0.75rem;">
+          <div class="arch-node an-green">🖥️ Node 1<br><span style="font-size:0.62rem;opacity:0.7;">Pod A · Pod B</span></div>
+          <div class="arch-node an-green">🖥️ Node 2<br><span style="font-size:0.62rem;opacity:0.7;">Pod C · Pod D</span></div>
+          <div class="arch-node an-green">🖥️ Node 3<br><span style="font-size:0.62rem;opacity:0.7;">Pod E · Pod F</span></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section class="section">
+      <div class="sec-label sec-label-purple">🧠 CORE CONCEPTS</div>
+      <h2 class="sec-title">Pods, Deployments, <span class="accent-purple">Services</span></h2>
+
+      <div class="grid-3 reveal">
+        <div class="card card-glow card-blue">
+          <div class="card-icon icon-blue">📦</div>
+          <div class="card-title">Pod</div>
+          <div class="card-body">The smallest unit. One or more containers that share networking and storage. Think of it as a "wrapper" around your container(s).</div>
+        </div>
+        <div class="card card-glow card-purple">
+          <div class="card-icon icon-purple">🚀</div>
+          <div class="card-title">Deployment</div>
+          <div class="card-body">Declares how many copies of your Pod should run. Kubernetes ensures this count is always maintained — it restarts crashed pods automatically.</div>
+        </div>
+        <div class="card card-glow card-cyan">
+          <div class="card-icon icon-cyan">🌐</div>
+          <div class="card-title">Service</div>
+          <div class="card-body">A stable network endpoint that routes traffic to pods. Since pods have dynamic IPs, services provide a fixed address for other apps to connect to.</div>
+        </div>
+        <div class="card card-glow card-green">
+          <div class="card-icon icon-green">⚙️</div>
+          <div class="card-title">ConfigMap</div>
+          <div class="card-body">Stores configuration data (like env variables) separately from your app code. Inject at runtime without rebuilding the image.</div>
+        </div>
+        <div class="card card-glow card-amber">
+          <div class="card-icon icon-amber">🔒</div>
+          <div class="card-title">Secret</div>
+          <div class="card-body">Like ConfigMap but for sensitive data — passwords, API keys, TLS certs. Base64-encoded (not encrypted by default — add encryption at rest in production).</div>
+        </div>
+        <div class="card card-glow card-blue">
+          <div class="card-icon icon-blue">📈</div>
+          <div class="card-title">HPA</div>
+          <div class="card-body">Horizontal Pod Autoscaler. Automatically scales pod count up or down based on CPU/memory usage or custom metrics.</div>
+        </div>
+      </div>
+
+      <!-- ── DEPLOYMENT YAML ── -->
+      <div class="sec-label sec-label-blue mt-4 reveal">📄 A DEPLOYMENT YAML</div>
+      <div class="code-block reveal">
+        <div class="code-lang">YAML</div>
+        <span class="c-kw">apiVersion:</span> apps/v1<br>
+        <span class="c-kw">kind:</span> Deployment<br>
+        <span class="c-kw">metadata:</span><br>
+        &nbsp;&nbsp;<span class="c-kw">name:</span> my-app<br>
+        <span class="c-kw">spec:</span><br>
+        &nbsp;&nbsp;<span class="c-kw">replicas:</span> 3    <span class="c-cmt"># run 3 copies</span><br>
+        &nbsp;&nbsp;<span class="c-kw">selector:</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="c-kw">matchLabels:</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-kw">app:</span> my-app<br>
+        &nbsp;&nbsp;<span class="c-kw">template:</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="c-kw">spec:</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-kw">containers:</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-flag">- name:</span> my-app<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-kw">image:</span> my-app:1.2.0<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-kw">ports:</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-flag">- containerPort:</span> 8000<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-kw">resources:</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-kw">limits:</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-kw">memory:</span> <span class="c-str">"256Mi"</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-kw">cpu:</span> <span class="c-str">"500m"</span>
+      </div>
+
+      <div class="sec-label sec-label-green mt-3 reveal">⚡ ESSENTIAL kubectl COMMANDS</div>
+      <div class="code-block reveal">
+        <div class="code-lang">BASH</div>
+        <span class="c-cmd">kubectl get pods</span>                   <span class="c-cmt"># list pods</span><br>
+        <span class="c-cmd">kubectl get deployments</span><br>
+        <span class="c-cmd">kubectl describe pod</span> &lt;name&gt;        <span class="c-cmt"># details + events</span><br>
+        <span class="c-cmd">kubectl logs</span> &lt;pod-name&gt;            <span class="c-cmt"># view logs</span><br>
+        <span class="c-cmd">kubectl apply</span> <span class="c-flag">-f</span> deployment.yaml   <span class="c-cmt"># deploy/update</span><br>
+        <span class="c-cmd">kubectl delete</span> <span class="c-flag">-f</span> deployment.yaml  <span class="c-cmt"># remove</span><br>
+        <span class="c-cmd">kubectl scale deployment</span> my-app <span class="c-flag">--replicas=5</span><br>
+        <span class="c-cmd">kubectl exec</span> <span class="c-flag">-it</span> &lt;pod&gt; -- bash    <span class="c-cmt"># shell into pod</span>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section class="section">
+      <div class="sec-label sec-label-amber">⚠️ COMMON MISTAKES</div>
+      <h2 class="sec-title">What beginners <span class="accent-cyan">get wrong</span></h2>
+      <div class="grid-2 reveal">
+        <div class="info-box ib-red"><span class="ib-label">❌ MISTAKE 1</span><strong>Not setting resource limits.</strong> Without limits, one pod can consume all memory and crash the entire node. Always set <code>resources.limits</code>.</div>
+        <div class="info-box ib-red"><span class="ib-label">❌ MISTAKE 2</span><strong>Using :latest image tags.</strong> Same as with Docker — pin to a specific version. Rolling updates become unpredictable otherwise.</div>
+        <div class="info-box ib-red"><span class="ib-label">❌ MISTAKE 3</span><strong>Only running 1 replica in production.</strong> A single pod = a single point of failure. Run at least 2–3 replicas and spread across nodes.</div>
+        <div class="info-box ib-red"><span class="ib-label">❌ MISTAKE 4</span><strong>Storing secrets in ConfigMaps.</strong> ConfigMaps are plain text. Sensitive data belongs in Secrets — or better, a secrets manager (Vault, AWS Secrets Manager).</div>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:0;">
+      <div class="summary-box reveal">
+        <div class="summary-title">💡 Quick Summary — Kubernetes</div>
+        <div class="summary-points">
+          <div class="summary-point">Kubernetes orchestrates containers at scale — scheduling, healing, scaling automatically.</div>
+          <div class="summary-point"><strong>Pod</strong> = smallest unit (1+ containers). <strong>Deployment</strong> = manages pod replicas. <strong>Service</strong> = stable network endpoint.</div>
+          <div class="summary-point">The <strong>Control Plane</strong> (API server, scheduler, etcd) makes decisions. <strong>Nodes</strong> run the actual workloads.</div>
+          <div class="summary-point">Everything is declared in YAML and applied with <code>kubectl apply -f</code>.</div>
+          <div class="summary-point">Always set resource limits, use specific image tags, and run multiple replicas in production.</div>
+        </div>
+      </div>
+      <div class="flex gap-sm mt-2 reveal">
+        <a href="ubuntu-server.html" class="btn btn-primary">Next: Ubuntu Server →</a>
+        <a href="docker.html" class="btn btn-ghost">← Docker</a>
+      </div>
+    </section>
+
+  </div>
+</main>
+<div id="footer-placeholder"></div>
+<script src="scripts/main.js"></script>
+</body>
+</html>

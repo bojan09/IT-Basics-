@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Windows Server 2025 — ITBase</title>
+  <link rel="stylesheet" href="styles/main.css" />
+</head>
+<body>
+<div id="navbar-placeholder"></div>
+<main>
+  <header class="page-hero">
+    <div class="page-hero-inner">
+      <div class="breadcrumb"><a href="index.html">Home</a> / Windows Server 2025</div>
+      <div class="tags"><span class="tag tag-blue">WINDOWS SERVER</span><span class="tag tag-cyan">ACTIVE DIRECTORY</span><span class="tag tag-purple">ENTERPRISE</span></div>
+      <h1>🪟 Windows Server 2025</h1>
+      <p>Active Directory, server roles, IIS, and managing enterprise Windows infrastructure.</p>
+    </div>
+  </header>
+  <div class="section-inner" style="max-width:900px;margin:0 auto;padding:0 1.5rem;">
+
+    <section class="section">
+      <div class="sec-label sec-label-blue">📖 EXPLAIN LIKE I'M A BEGINNER</div>
+      <h2 class="sec-title">What is <span class="accent-blue">Windows Server?</span></h2>
+      <div class="info-box ib-blue reveal"><span class="ib-label">💡 THE ANALOGY</span>Windows Server is like the headquarters of a large company. Active Directory is the HR department — tracking every employee (user account), their access badge (permissions), and which teams they're in (groups). Without HQ, each branch (workstation) operates independently. With it, everything is centrally managed.</div>
+
+      <div class="sec-label sec-label-cyan mt-4 reveal">🏗️ KEY SERVER ROLES</div>
+      <div class="grid-3 reveal">
+        <div class="card card-glow card-blue">
+          <div class="card-icon icon-blue">🗂️</div>
+          <div class="card-title">Active Directory DS</div>
+          <div class="card-body">Central authentication and authorization for all users, computers, and resources in the organization.</div>
+        </div>
+        <div class="card card-glow card-cyan">
+          <div class="card-icon icon-cyan">🌐</div>
+          <div class="card-title">DNS Server</div>
+          <div class="card-body">Resolves internal hostnames. AD depends heavily on DNS — if DNS breaks, logins break.</div>
+        </div>
+        <div class="card card-glow card-purple">
+          <div class="card-icon icon-purple">📋</div>
+          <div class="card-title">DHCP Server</div>
+          <div class="card-body">Automatically assigns IP addresses to devices on the network. No more manual IP configuration.</div>
+        </div>
+        <div class="card card-glow card-green">
+          <div class="card-icon icon-green">🌍</div>
+          <div class="card-title">IIS Web Server</div>
+          <div class="card-body">Hosts websites and web apps on Windows. Supports ASP.NET, PHP, and static sites.</div>
+        </div>
+        <div class="card card-glow card-amber">
+          <div class="card-icon icon-amber">🖨️</div>
+          <div class="card-title">Print Services</div>
+          <div class="card-body">Central print queue management — deploy printer configs to all users via Group Policy.</div>
+        </div>
+        <div class="card card-glow card-blue">
+          <div class="card-icon icon-blue">📁</div>
+          <div class="card-title">File Services</div>
+          <div class="card-body">Shared network drives with granular NTFS permissions. Quotas, deduplication, Shadow Copies.</div>
+        </div>
+      </div>
+
+      <div class="sec-label sec-label-purple mt-4 reveal">🗂️ ACTIVE DIRECTORY FLOW</div>
+      <div class="arch-diagram reveal">
+        <div class="arch-row"><div class="arch-node an-blue" style="min-width:160px;">🏢 AD Domain (company.local)</div></div>
+        <div class="arch-arrow-down">↓ contains</div>
+        <div class="arch-row" style="gap:0.75rem;">
+          <div class="arch-node an-cyan">👥 Users</div>
+          <div class="arch-node an-cyan">🖥️ Computers</div>
+          <div class="arch-node an-cyan">📁 Groups</div>
+          <div class="arch-node an-cyan">📋 GPOs</div>
+        </div>
+        <div class="arch-arrow-down">↓ organized into</div>
+        <div class="arch-row"><div class="arch-node an-purple" style="min-width:200px;">📂 Organizational Units (OUs)</div></div>
+        <div class="arch-arrow-down">↓ authenticated by</div>
+        <div class="arch-row"><div class="arch-node an-green" style="min-width:200px;">🔐 Domain Controller (DC)</div></div>
+      </div>
+
+      <div class="sec-label sec-label-green mt-3 reveal">⚡ ESSENTIAL POWERSHELL FOR AD</div>
+      <div class="code-block reveal"><div class="code-lang">POWERSHELL</div>
+<span class="c-cmt"># Create a new AD user</span><br>
+<span class="c-cmd">New-ADUser</span> <span class="c-flag">-Name</span> <span class="c-str">"John Smith"</span> <span class="c-flag">-SamAccountName</span> <span class="c-str">"jsmith"</span> <span class="c-flag">-Enabled</span> $true<br>
+<br>
+<span class="c-cmt"># Add user to a group</span><br>
+<span class="c-cmd">Add-ADGroupMember</span> <span class="c-flag">-Identity</span> <span class="c-str">"IT-Team"</span> <span class="c-flag">-Members</span> <span class="c-str">"jsmith"</span><br>
+<br>
+<span class="c-cmt"># List all computers in domain</span><br>
+<span class="c-cmd">Get-ADComputer</span> <span class="c-flag">-Filter</span> * | <span class="c-cmd">Select-Object</span> Name<br>
+<br>
+<span class="c-cmt"># Reset a user password</span><br>
+<span class="c-cmd">Set-ADAccountPassword</span> <span class="c-flag">-Identity</span> <span class="c-str">"jsmith"</span> <span class="c-flag">-Reset</span><br>
+<br>
+<span class="c-cmt"># Force Group Policy update</span><br>
+<span class="c-cmd">gpupdate /force</span></div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section class="section">
+      <div class="sec-label sec-label-amber">⚠️ COMMON MISTAKES</div>
+      <h2 class="sec-title">What beginners <span class="accent-cyan">get wrong</span></h2>
+      <div class="grid-2 reveal">
+        <div class="info-box ib-red"><span class="ib-label">❌ MISTAKE 1</span><strong>Promoting the only DC to domain controller.</strong> Always have at least 2 domain controllers. If the one DC fails, the entire domain fails.</div>
+        <div class="info-box ib-red"><span class="ib-label">❌ MISTAKE 2</span><strong>Ignoring DNS issues.</strong> AD depends on DNS. Most AD login problems are actually DNS problems. Always check DNS first.</div>
+        <div class="info-box ib-red"><span class="ib-label">❌ MISTAKE 3</span><strong>Not using GPOs for software deployment.</strong> Manually installing software on 100 machines is unnecessary — Group Policy Object software deployment handles it centrally.</div>
+        <div class="info-box ib-red"><span class="ib-label">❌ MISTAKE 4</span><strong>Over-privileged user accounts.</strong> Standard users should not have admin rights. Use the principle of least privilege — give only the access needed.</div>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:0;">
+      <div class="summary-box reveal">
+        <div class="summary-title">💡 Quick Summary — Windows Server 2025</div>
+        <div class="summary-points">
+          <div class="summary-point"><strong>Active Directory</strong> centrally manages users, computers, groups, and policies across the entire organization.</div>
+          <div class="summary-point"><strong>Domain Controllers (DCs)</strong> handle authentication — always run at least 2 for redundancy.</div>
+          <div class="summary-point"><strong>Group Policy Objects (GPOs)</strong> push settings and software to users/computers automatically.</div>
+          <div class="summary-point">AD requires working <strong>DNS</strong> — most AD issues are DNS issues in disguise.</div>
+          <div class="summary-point">Manage everything via Server Manager, RSAT tools, or PowerShell cmdlets.</div>
+        </div>
+      </div>
+      <div class="flex gap-sm mt-2 reveal">
+        <a href="powershell.html" class="btn btn-primary">Next: PowerShell →</a>
+        <a href="ubuntu-server.html" class="btn btn-ghost">← Ubuntu Server</a>
+      </div>
+    </section>
+
+  </div>
+</main>
+<div id="footer-placeholder"></div>
+<script src="scripts/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Unix Fundamentals — ITBase</title>
+  <link rel="stylesheet" href="styles/main.css" />
+</head>
+<body>
+<div id="navbar-placeholder"></div>
+<main>
+  <header class="page-hero">
+    <div class="page-hero-inner">
+      <div class="breadcrumb"><a href="index.html">Home</a> / Unix Fundamentals</div>
+      <div class="tags"><span class="tag tag-amber">UNIX</span><span class="tag tag-green">PHILOSOPHY</span><span class="tag tag-cyan">FOUNDATIONAL</span></div>
+      <h1>🧑‍💻 Unix Fundamentals</h1>
+      <p>The 1969 operating system that became the foundation for Linux, macOS, Android, and most of the internet.</p>
+    </div>
+  </header>
+  <div class="section-inner" style="max-width:900px;margin:0 auto;padding:0 1.5rem;">
+
+    <section class="section">
+      <div class="sec-label sec-label-amber">📖 EXPLAIN LIKE I'M A BEGINNER</div>
+      <h2 class="sec-title">The idea that <span class="accent-cyan">changed computing forever</span></h2>
+      <div class="info-box ib-amber reveal"><span class="ib-label">💡 THE ANALOGY</span>Unix is like LEGO. Each Unix command is a small, simple brick that does one thing well. The magic is in combining those bricks — connecting commands together to build complex structures. This philosophy of small, composable tools is still the backbone of modern computing 50+ years later.</div>
+
+      <div class="sec-label sec-label-cyan mt-4 reveal">🧩 THE UNIX PHILOSOPHY — 3 RULES</div>
+      <div class="grid-3 reveal">
+        <div class="card card-glow card-amber">
+          <div class="card-icon icon-amber">🎯</div>
+          <div class="card-title">Do one thing well</div>
+          <div class="card-body"><code>ls</code> lists files. <code>grep</code> searches text. <code>sort</code> sorts. Each tool has exactly one job and does it excellently.</div>
+        </div>
+        <div class="card card-glow card-cyan">
+          <div class="card-icon icon-cyan">🔗</div>
+          <div class="card-title">Work together</div>
+          <div class="card-body">Commands are designed to be chained via pipes. The output of one is the input of another. Build complexity from simplicity.</div>
+        </div>
+        <div class="card card-glow card-green">
+          <div class="card-icon icon-green">📄</div>
+          <div class="card-title">Text is universal</div>
+          <div class="card-body">Everything is a file or a text stream. Config files are plain text. Logs are plain text. This universality enables composability.</div>
+        </div>
+      </div>
+
+      <!-- ── UNIX FAMILY TREE ── -->
+      <div class="sec-label sec-label-blue mt-4 reveal">🌳 THE UNIX FAMILY TREE</div>
+      <div class="arch-diagram reveal">
+        <div class="arch-row"><div class="arch-node an-amber" style="min-width:180px;">⚙️ Unix (Bell Labs, 1969)</div></div>
+        <div class="arch-arrow-down">↓ inspired / derived</div>
+        <div class="arch-row" style="gap:0.75rem;">
+          <div class="arch-node an-blue">BSD (1977)</div>
+          <div class="arch-node an-purple">System V (1983)</div>
+          <div class="arch-node an-green">GNU Project (1983)</div>
+        </div>
+        <div class="arch-arrow-down">↓</div>
+        <div class="arch-row" style="gap:0.75rem;">
+          <div class="arch-node an-cyan">🐧 Linux (1991)</div>
+          <div class="arch-node an-gray">🍎 macOS (2001)</div>
+          <div class="arch-node an-cyan">FreeBSD / OpenBSD</div>
+        </div>
+        <div class="arch-arrow-down">↓ powers</div>
+        <div class="arch-row" style="gap:0.5rem;flex-wrap:wrap;">
+          <div class="arch-node an-green">Servers</div>
+          <div class="arch-node an-green">Android</div>
+          <div class="arch-node an-green">Cloud</div>
+          <div class="arch-node an-green">Routers</div>
+          <div class="arch-node an-green">Supercomputers</div>
+        </div>
+      </div>
+
+      <div class="sec-label sec-label-purple mt-4 reveal">🔧 CORE UNIX TOOLS — STILL USED DAILY</div>
+      <div class="code-block reveal"><div class="code-lang">BASH / SH</div>
+<span class="c-cmt"># Text processing — Unix's greatest strength</span><br>
+<span class="c-cmd">grep</span> <span class="c-str">"ERROR"</span> /var/log/syslog     <span class="c-cmt"># search text</span><br>
+<span class="c-cmd">sed</span> <span class="c-str">'s/old/new/g'</span> file.txt        <span class="c-cmt"># find/replace</span><br>
+<span class="c-cmd">awk</span> <span class="c-str">'{print $1, $3}'</span> data.txt      <span class="c-cmt"># extract columns</span><br>
+<span class="c-cmd">cut</span> <span class="c-flag">-d</span><span class="c-str">','</span> <span class="c-flag">-f</span>1 data.csv           <span class="c-cmt"># cut CSV column 1</span><br>
+<span class="c-cmd">sort</span> names.txt | <span class="c-cmd">uniq</span>              <span class="c-cmt"># sort and deduplicate</span><br>
+<span class="c-cmd">wc</span> <span class="c-flag">-l</span> file.txt                    <span class="c-cmt"># count lines</span><br>
+<br>
+<span class="c-cmt"># The classic Unix pipeline — count ERROR lines</span><br>
+<span class="c-cmd">cat</span> /var/log/syslog | <span class="c-cmd">grep</span> <span class="c-str">"ERROR"</span> | <span class="c-cmd">wc</span> <span class="c-flag">-l</span><br>
+<br>
+<span class="c-cmt"># Find + process in one line</span><br>
+<span class="c-cmd">find</span> /logs <span class="c-flag">-name</span> <span class="c-str">"*.log"</span> <span class="c-flag">-mtime</span> +30 | <span class="c-cmd">xargs</span> rm</div>
+
+      <div class="sec-label sec-label-green mt-3 reveal">🐚 SHELLS — YOUR INTERFACE TO UNIX</div>
+      <table class="compare-table reveal">
+        <thead><tr><th>Shell</th><th>Full Name</th><th>Known For</th><th>Used In</th></tr></thead>
+        <tbody>
+          <tr><td>sh</td><td>Bourne Shell</td><td>The original. Simple, portable.</td><td>Scripts, base of all shells</td></tr>
+          <tr><td>bash</td><td>Bourne Again Shell</td><td>Most popular. Feature-rich.</td><td>Linux default</td></tr>
+          <tr><td>zsh</td><td>Z Shell</td><td>Better autocomplete + plugins.</td><td>macOS default</td></tr>
+          <tr><td>fish</td><td>Friendly Interactive Shell</td><td>User-friendly, colorful syntax.</td><td>Developer preference</td></tr>
+          <tr><td>ksh</td><td>Korn Shell</td><td>Powerful scripting.</td><td>Enterprise Unix/AIX</td></tr>
+        </tbody>
+      </table>
+
+      <div class="sec-label sec-label-amber mt-3 reveal">⚙️ PROCESSES AND SIGNALS</div>
+      <div class="code-block reveal"><div class="code-lang">BASH</div>
+<span class="c-cmt"># View processes</span><br>
+<span class="c-cmd">ps</span> aux | <span class="c-cmd">grep</span> nginx<br>
+<span class="c-cmd">pgrep</span> nginx                         <span class="c-cmt"># just get PIDs</span><br>
+<br>
+<span class="c-cmt"># Send signals</span><br>
+<span class="c-cmd">kill</span> <span class="c-flag">-15</span> &lt;PID&gt;                     <span class="c-cmt"># SIGTERM — graceful stop</span><br>
+<span class="c-cmd">kill</span> <span class="c-flag">-9</span>  &lt;PID&gt;                     <span class="c-cmt"># SIGKILL — force stop</span><br>
+<span class="c-cmd">kill</span> <span class="c-flag">-1</span>  &lt;PID&gt;                     <span class="c-cmt"># SIGHUP — reload config</span><br>
+<br>
+<span class="c-cmt"># Background jobs</span><br>
+<span class="c-cmd">sleep</span> 60 &amp;                          <span class="c-cmt"># run in background</span><br>
+<span class="c-cmd">jobs</span>                                <span class="c-cmt"># list background jobs</span><br>
+<span class="c-cmd">fg</span> %1                               <span class="c-cmt"># bring job to foreground</span></div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section class="section">
+      <div class="sec-label sec-label-amber">⚠️ COMMON MISTAKES</div>
+      <h2 class="sec-title">What beginners <span class="accent-cyan">get wrong</span></h2>
+      <div class="grid-2 reveal">
+        <div class="info-box ib-red"><span class="ib-label">❌ MISTAKE 1</span><strong>Thinking Linux = Unix.</strong> Linux is Unix-like and follows Unix philosophy, but it's not Unix. macOS is actually certified Unix. Linux is POSIX-compliant but a separate family.</div>
+        <div class="info-box ib-red"><span class="ib-label">❌ MISTAKE 2</span><strong>Using SIGKILL (-9) for everything.</strong> Always try SIGTERM (-15) first — it lets the process clean up. SIGKILL (-9) doesn't let the process do anything before dying.</div>
+        <div class="info-box ib-red"><span class="ib-label">❌ MISTAKE 3</span><strong>Writing non-portable shell scripts.</strong> Bash features don't work in sh. Use <code>#!/bin/bash</code> explicitly or stick to POSIX sh if you need portability.</div>
+        <div class="info-box ib-red"><span class="ib-label">❌ MISTAKE 4</span><strong>Underestimating text tools.</strong> grep, awk, sed, sort, cut, uniq — beginners skip these. Mastering them makes you dramatically more productive than any GUI tool.</div>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:0;">
+      <div class="summary-box reveal">
+        <div class="summary-title">💡 Quick Summary — Unix Fundamentals</div>
+        <div class="summary-points">
+          <div class="summary-point">Unix philosophy: <strong>small tools that do one thing well, designed to work together via pipes</strong>.</div>
+          <div class="summary-point">Everything is a file — devices, processes, network sockets. This universality powers Unix's composability.</div>
+          <div class="summary-point">The pipe <strong>|</strong> connects commands — the output of one becomes input to the next.</div>
+          <div class="summary-point">Master <strong>grep, awk, sed, sort, cut, wc</strong> — these text tools are the Swiss Army knife of Unix.</div>
+          <div class="summary-point">Linux and macOS are both Unix descendants — Unix fundamentals apply directly to both.</div>
+        </div>
+      </div>
+      <div class="flex gap-sm mt-2 reveal">
+        <a href="index.html" class="btn btn-primary">← Back to All Topics</a>
+        <a href="powershell.html" class="btn btn-ghost">← PowerShell</a>
+      </div>
+    </section>
+
+  </div>
+</main>
+<div id="footer-placeholder"></div>
+<script src="scripts/main.js"></script>
+</body>
+</html>

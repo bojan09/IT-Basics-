@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ubuntu Server — ITBase</title>
+  <link rel="stylesheet" href="styles/main.css" />
+</head>
+<body>
+<div id="navbar-placeholder"></div>
+<main>
+  <header class="page-hero">
+    <div class="page-hero-inner">
+      <div class="breadcrumb"><a href="index.html">Home</a> / Ubuntu Server</div>
+      <div class="tags"><span class="tag tag-green">LINUX SERVER</span><span class="tag tag-cyan">DEVOPS</span><span class="tag tag-blue">BEGINNER</span></div>
+      <h1>🖥️ Ubuntu Server Basics</h1>
+      <p>Set up, secure, and manage an Ubuntu Server — SSH, firewall, services, and essential admin tasks.</p>
+    </div>
+  </header>
+  <div class="section-inner" style="max-width:900px;margin:0 auto;padding:0 1.5rem;">
+
+    <section class="section">
+      <div class="sec-label sec-label-green">📖 EXPLAIN LIKE I'M A BEGINNER</div>
+      <h2 class="sec-title">What is <span class="accent-green">Ubuntu Server?</span></h2>
+      <div class="info-box ib-green reveal"><span class="ib-label">💡 THE ANALOGY</span>Ubuntu Server is like renting an empty office building. You get the space (hardware), the plumbing (network), and electricity (power) — but you bring everything else. No GUI. Just a terminal. You're the architect.</div>
+
+      <div class="sec-label sec-label-blue mt-4 reveal">🚀 FIRST STEPS AFTER INSTALL</div>
+      <div class="steps reveal">
+        <div class="step"><div class="step-num">1</div><div class="step-content"><div class="step-title">Update the system</div><div class="step-body">Always update first — security patches and package upgrades.</div></div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-content"><div class="step-title">Create a non-root user</div><div class="step-body">Never run a server as root day-to-day. Create a user and add to sudo group.</div></div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-content"><div class="step-title">Configure SSH key auth</div><div class="step-body">Disable password login. Use SSH keys — dramatically more secure.</div></div></div>
+        <div class="step"><div class="step-num">4</div><div class="step-content"><div class="step-title">Enable the firewall</div><div class="step-body">UFW (Uncomplicated Firewall) — allow only the ports you need.</div></div></div>
+        <div class="step"><div class="step-num">5</div><div class="step-content"><div class="step-title">Install fail2ban</div><div class="step-body">Auto-bans IPs that fail too many login attempts. Essential for public servers.</div></div></div>
+      </div>
+
+      <div class="code-block reveal"><div class="code-lang">BASH — INITIAL SERVER SETUP</div>
+<span class="c-cmt"># 1. Update everything</span><br>
+<span class="c-cmd">sudo apt update</span> &amp;&amp; <span class="c-cmd">sudo apt upgrade</span> <span class="c-flag">-y</span><br>
+<br>
+<span class="c-cmt"># 2. Create a new user</span><br>
+<span class="c-cmd">sudo adduser</span> deploy<br>
+<span class="c-cmd">sudo usermod</span> <span class="c-flag">-aG</span> sudo deploy<br>
+<br>
+<span class="c-cmt"># 3. Configure UFW firewall</span><br>
+<span class="c-cmd">sudo ufw allow</span> OpenSSH<br>
+<span class="c-cmd">sudo ufw allow</span> 80/tcp<br>
+<span class="c-cmd">sudo ufw allow</span> 443/tcp<br>
+<span class="c-cmd">sudo ufw enable</span><br>
+<span class="c-cmd">sudo ufw status</span><br>
+<br>
+<span class="c-cmt"># 4. Install fail2ban</span><br>
+<span class="c-cmd">sudo apt install</span> fail2ban <span class="c-flag">-y</span><br>
+<span class="c-cmd">sudo systemctl enable</span> fail2ban</div>
+
+      <div class="sec-label sec-label-cyan mt-3 reveal">🔑 SSH KEY AUTHENTICATION</div>
+      <div class="code-block reveal"><div class="code-lang">BASH</div>
+<span class="c-cmt"># On your LOCAL machine — generate a key pair</span><br>
+<span class="c-cmd">ssh-keygen</span> <span class="c-flag">-t</span> ed25519 <span class="c-flag">-C</span> <span class="c-str">"your@email.com"</span><br>
+<br>
+<span class="c-cmt"># Copy public key to server</span><br>
+<span class="c-cmd">ssh-copy-id</span> deploy@your-server-ip<br>
+<br>
+<span class="c-cmt"># On SERVER — disable password auth</span><br>
+<span class="c-cmd">sudo nano</span> /etc/ssh/sshd_config<br>
+<span class="c-cmt"># Set: PasswordAuthentication no</span><br>
+<span class="c-cmd">sudo systemctl restart</span> ssh</div>
+
+      <div class="sec-label sec-label-purple mt-3 reveal">⚙️ SYSTEMD SERVICE MANAGEMENT</div>
+      <div class="code-block reveal"><div class="code-lang">BASH</div>
+<span class="c-cmd">sudo systemctl status</span> nginx      <span class="c-cmt"># check status</span><br>
+<span class="c-cmd">sudo systemctl start</span> nginx       <span class="c-cmt"># start service</span><br>
+<span class="c-cmd">sudo systemctl stop</span> nginx        <span class="c-cmt"># stop service</span><br>
+<span class="c-cmd">sudo systemctl enable</span> nginx      <span class="c-cmt"># start on boot</span><br>
+<span class="c-cmd">sudo systemctl restart</span> nginx     <span class="c-cmt"># restart</span><br>
+<span class="c-cmd">sudo journalctl</span> <span class="c-flag">-u</span> nginx <span class="c-flag">-f</span>     <span class="c-cmt"># follow logs</span></div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section class="section">
+      <div class="sec-label sec-label-amber">⚠️ COMMON MISTAKES</div>
+      <h2 class="sec-title">What beginners <span class="accent-cyan">get wrong</span></h2>
+      <div class="grid-2 reveal">
+        <div class="info-box ib-red"><span class="ib-label">❌ MISTAKE 1</span><strong>Disabling password auth before testing SSH keys work.</strong> Always verify key login in a second terminal before closing your first session.</div>
+        <div class="info-box ib-red"><span class="ib-label">❌ MISTAKE 2</span><strong>Not setting up automatic security updates.</strong> Install <code>unattended-upgrades</code> for automatic security patches.</div>
+        <div class="info-box ib-red"><span class="ib-label">❌ MISTAKE 3</span><strong>Leaving default ports open with no firewall.</strong> Lock down everything. Only open ports your services actually need.</div>
+        <div class="info-box ib-red"><span class="ib-label">❌ MISTAKE 4</span><strong>Not monitoring logs.</strong> Check <code>journalctl</code> and <code>/var/log/auth.log</code> regularly — failed logins are a warning sign.</div>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:0;">
+      <div class="summary-box reveal">
+        <div class="summary-title">💡 Quick Summary — Ubuntu Server</div>
+        <div class="summary-points">
+          <div class="summary-point">Always update first, create a non-root user, and set up SSH key authentication.</div>
+          <div class="summary-point">Use <strong>UFW</strong> to manage firewall rules — default deny, allow only what's needed.</div>
+          <div class="summary-point"><strong>systemd / systemctl</strong> manages all services — start, stop, enable, check status.</div>
+          <div class="summary-point"><strong>fail2ban</strong> protects against brute-force attacks automatically.</div>
+          <div class="summary-point">Monitor logs with <code>journalctl -u &lt;service&gt; -f</code> for real-time output.</div>
+        </div>
+      </div>
+      <div class="flex gap-sm mt-2 reveal">
+        <a href="windows-server.html" class="btn btn-primary">Next: Windows Server 2025 →</a>
+        <a href="kubernetes.html" class="btn btn-ghost">← Kubernetes</a>
+      </div>
+    </section>
+
+  </div>
+</main>
+<div id="footer-placeholder"></div>
+<script src="scripts/main.js"></script>
+</body>
+</html>

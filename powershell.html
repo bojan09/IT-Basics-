@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PowerShell — ITBase</title>
+  <link rel="stylesheet" href="styles/main.css" />
+</head>
+<body>
+<div id="navbar-placeholder"></div>
+<main>
+  <header class="page-hero">
+    <div class="page-hero-inner">
+      <div class="breadcrumb"><a href="index.html">Home</a> / PowerShell</div>
+      <div class="tags"><span class="tag tag-purple">SCRIPTING</span><span class="tag tag-blue">WINDOWS</span><span class="tag tag-cyan">AUTOMATION</span></div>
+      <h1>⚡ PowerShell</h1>
+      <p>The command-line shell and scripting language built for Windows automation — now cross-platform.</p>
+    </div>
+  </header>
+  <div class="section-inner" style="max-width:900px;margin:0 auto;padding:0 1.5rem;">
+
+    <section class="section">
+      <div class="sec-label sec-label-purple">📖 EXPLAIN LIKE I'M A BEGINNER</div>
+      <h2 class="sec-title">What is <span class="accent-purple">PowerShell?</span></h2>
+      <div class="info-box ib-purple reveal"><span class="ib-label">💡 THE ANALOGY</span>Think of PowerShell as a remote control for your computer — but instead of pressing buttons, you type commands. Unlike a TV remote that sends simple signals, PowerShell sends full structured instructions and gets back structured data you can further process. It's automation on steroids.</div>
+
+      <div class="info-box ib-blue reveal"><span class="ib-label">⚡ KEY INSIGHT</span>PowerShell works with <strong>objects</strong>, not text. When you run <code>Get-Process</code>, you get a list of process objects with properties (Name, CPU, Memory). You can then filter, sort, and manipulate them — not just read text output.</div>
+
+      <div class="sec-label sec-label-cyan mt-4 reveal">⌨️ ESSENTIAL CMDLETS</div>
+      <div class="code-block reveal"><div class="code-lang">POWERSHELL</div>
+<span class="c-cmt"># Get help for any command</span><br>
+<span class="c-cmd">Get-Help</span> Get-Process <span class="c-flag">-Full</span><br>
+<br>
+<span class="c-cmt"># List running processes</span><br>
+<span class="c-cmd">Get-Process</span><br>
+<span class="c-cmd">Get-Process</span> | <span class="c-cmd">Where-Object</span> CPU <span class="c-flag">-gt</span> 50<br>
+<br>
+<span class="c-cmt"># File system</span><br>
+<span class="c-cmd">Get-ChildItem</span>                    <span class="c-cmt"># like ls / dir</span><br>
+<span class="c-cmd">Get-Content</span> C:\log.txt           <span class="c-cmt"># like cat</span><br>
+<span class="c-cmd">Set-Content</span> file.txt <span class="c-str">"Hello"</span>    <span class="c-cmt"># write to file</span><br>
+<span class="c-cmd">Copy-Item</span> src.txt dest\<br>
+<span class="c-cmd">Remove-Item</span> oldfile.txt<br>
+<br>
+<span class="c-cmt"># Services</span><br>
+<span class="c-cmd">Get-Service</span><br>
+<span class="c-cmd">Start-Service</span> Spooler<br>
+<span class="c-cmd">Stop-Service</span> Spooler<br>
+<br>
+<span class="c-cmt"># Network</span><br>
+<span class="c-cmd">Test-NetConnection</span> google.com <span class="c-flag">-Port</span> 443<br>
+<span class="c-cmd">Get-NetIPAddress</span><br>
+<span class="c-cmd">Resolve-DnsName</span> google.com</div>
+
+      <div class="sec-label sec-label-blue mt-3 reveal">📜 THE PIPELINE — POWERSHELL'S SUPERPOWER</div>
+      <p class="reveal" style="font-size:0.82rem;color:var(--text2);margin-bottom:1rem;">Chain commands together. Each command receives the <em>object</em> output of the previous one.</p>
+      <div class="code-block reveal"><div class="code-lang">POWERSHELL — PIPELINES</div>
+<span class="c-cmt"># Find the top 5 CPU-hungry processes</span><br>
+<span class="c-cmd">Get-Process</span> | <span class="c-cmd">Sort-Object</span> CPU <span class="c-flag">-Descending</span> | <span class="c-cmd">Select-Object</span> <span class="c-flag">-First</span> 5<br>
+<br>
+<span class="c-cmt"># Find all stopped services and export to CSV</span><br>
+<span class="c-cmd">Get-Service</span> | <span class="c-cmd">Where-Object</span> Status <span class="c-flag">-eq</span> <span class="c-str">'Stopped'</span> | <span class="c-cmd">Export-Csv</span> stopped.csv<br>
+<br>
+<span class="c-cmt"># Find large files over 100MB</span><br>
+<span class="c-cmd">Get-ChildItem</span> C:\ <span class="c-flag">-Recurse</span> | <span class="c-cmd">Where-Object</span> Length <span class="c-flag">-gt</span> 100MB | <span class="c-cmd">Sort-Object</span> Length</div>
+
+      <div class="sec-label sec-label-green mt-3 reveal">📋 YOUR FIRST SCRIPT</div>
+      <div class="code-block reveal"><div class="code-lang">POWERSHELL — SCRIPT</div>
+<span class="c-cmt"># system-report.ps1</span><br>
+<span class="c-cmt"># Generates a simple system health report</span><br>
+<br>
+<span class="c-kw">$report</span> = @{}<br>
+<br>
+<span class="c-cmt"># OS info</span><br>
+<span class="c-kw">$os</span> = <span class="c-cmd">Get-ComputerInfo</span><br>
+<span class="c-kw">$report</span>.OS = <span class="c-kw">$os</span>.OsName<br>
+<span class="c-kw">$report</span>.Uptime = (<span class="c-cmd">Get-Date</span>) - <span class="c-kw">$os</span>.OsLastBootUpTime<br>
+<br>
+<span class="c-cmt"># Disk space</span><br>
+<span class="c-kw">$disk</span> = <span class="c-cmd">Get-PSDrive</span> C<br>
+<span class="c-kw">$report</span>.FreeGB = [math]::Round(<span class="c-kw">$disk</span>.Free / 1GB, 2)<br>
+<br>
+<span class="c-cmt"># Output</span><br>
+<span class="c-kw">$report</span> | <span class="c-cmd">Format-Table</span><br>
+<span class="c-cmd">Write-Host</span> <span class="c-str">"Report complete!"</span> <span class="c-flag">-ForegroundColor</span> Green</div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section class="section">
+      <div class="sec-label sec-label-amber">⚠️ COMMON MISTAKES</div>
+      <h2 class="sec-title">What beginners <span class="accent-cyan">get wrong</span></h2>
+      <div class="grid-2 reveal">
+        <div class="info-box ib-red"><span class="ib-label">❌ MISTAKE 1</span><strong>Confusing PowerShell with CMD.</strong> They look similar but are completely different. PowerShell uses objects; CMD uses text strings. <code>dir</code> works in both but returns very different data.</div>
+        <div class="info-box ib-red"><span class="ib-label">❌ MISTAKE 2</span><strong>Not using -WhatIf before destructive commands.</strong> Add <code>-WhatIf</code> to see what would happen without actually doing it. Essential for Remove-Item, Stop-Service, etc.</div>
+        <div class="info-box ib-red"><span class="ib-label">❌ MISTAKE 3</span><strong>Ignoring execution policy.</strong> Scripts won't run by default. Set: <code>Set-ExecutionPolicy RemoteSigned</code> — but understand what it means first.</div>
+        <div class="info-box ib-red"><span class="ib-label">❌ MISTAKE 4</span><strong>Not using Get-Help.</strong> Every cmdlet has built-in documentation. <code>Get-Help Get-Process -Examples</code> shows you real usage examples.</div>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:0;">
+      <div class="summary-box reveal">
+        <div class="summary-title">💡 Quick Summary — PowerShell</div>
+        <div class="summary-points">
+          <div class="summary-point">PowerShell works with <strong>objects</strong>, not plain text — this makes filtering and manipulation much more powerful than CMD.</div>
+          <div class="summary-point">Cmdlets follow a <strong>Verb-Noun</strong> pattern: Get-Process, Stop-Service, New-Item, Remove-Item.</div>
+          <div class="summary-point">The <strong>pipeline |</strong> chains cmdlets together — each receives the object output of the previous.</div>
+          <div class="summary-point">Use <strong>Where-Object</strong> to filter and <strong>Select-Object</strong> to pick specific properties.</div>
+          <div class="summary-point">Always use <strong>-WhatIf</strong> to preview destructive actions before running them for real.</div>
+        </div>
+      </div>
+      <div class="flex gap-sm mt-2 reveal">
+        <a href="unix.html" class="btn btn-primary">Next: Unix Fundamentals →</a>
+        <a href="windows-server.html" class="btn btn-ghost">← Windows Server</a>
+      </div>
+    </section>
+
+  </div>
+</main>
+<div id="footer-placeholder"></div>
+<script src="scripts/main.js"></script>
+</body>
+</html>

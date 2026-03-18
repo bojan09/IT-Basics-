@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Docker — ITBase</title>
+  <link rel="stylesheet" href="styles/main.css" />
+</head>
+<body>
+<div id="navbar-placeholder"></div>
+<main>
+
+  <header class="page-hero">
+    <div class="page-hero-inner">
+      <div class="breadcrumb"><a href="index.html">Home</a> / Docker</div>
+      <div class="tags"><span class="tag tag-cyan">CONTAINERS</span><span class="tag tag-blue">DEVOPS</span><span class="tag tag-green">BEGINNER FRIENDLY</span></div>
+      <h1>🐳 Docker</h1>
+      <p>Package your app and everything it needs into a portable, self-contained unit that runs anywhere.</p>
+    </div>
+  </header>
+
+  <div class="section-inner" style="max-width:900px;margin:0 auto;padding:0 1.5rem;">
+
+    <!-- ── BEGINNER EXPLANATION ── -->
+    <section class="section">
+      <div class="sec-label sec-label-cyan">📖 EXPLAIN LIKE I'M A BEGINNER</div>
+      <h2 class="sec-title">What is <span class="accent-cyan">Docker?</span></h2>
+
+      <div class="info-box ib-cyan reveal">
+        <span class="ib-label">💡 THE ANALOGY</span>
+        Imagine you have a recipe (your app) and need to cook it in many different kitchens (computers). Without Docker, each kitchen might be missing different ingredients. <strong>Docker is like giving every kitchen a standardized, fully-stocked container</strong> — same ingredients, same tools, every time. Your app works the same everywhere.
+      </div>
+
+      <p class="reveal mt-2">Before Docker, developers would say <em>"It works on my machine!"</em> — a nightmare when code ran perfectly locally but crashed on the server. Docker solves this by packaging your app with all its dependencies into an isolated <strong>container</strong>.</p>
+
+      <!-- ── MAIN ARCHITECTURE DIAGRAM ── -->
+      <div class="sec-label sec-label-blue mt-4 reveal">🧩 DOCKER ARCHITECTURE</div>
+
+      <div class="arch-diagram reveal">
+        <div class="arch-row">
+          <div class="arch-node an-blue">📱 Your App</div>
+          <div class="arch-arrow">+</div>
+          <div class="arch-node an-blue">📦 Dependencies</div>
+          <div class="arch-arrow">+</div>
+          <div class="arch-node an-blue">⚙️ Config</div>
+        </div>
+        <div class="arch-arrow-down">↓ packaged into</div>
+        <div class="arch-row">
+          <div class="arch-node an-cyan" style="min-width:200px;">🐳 Docker Image</div>
+        </div>
+        <div class="arch-arrow-down">↓ run as</div>
+        <div class="arch-row">
+          <div class="arch-node an-purple" style="min-width:200px;">📦 Container (running instance)</div>
+        </div>
+        <div class="arch-arrow-down">↓ managed by</div>
+        <div class="arch-row">
+          <div class="arch-node an-green" style="min-width:200px;">🐳 Docker Engine</div>
+        </div>
+        <div class="arch-arrow-down">↓ running on</div>
+        <div class="arch-row">
+          <div class="arch-node an-gray" style="min-width:200px;">💻 Host OS (Linux / Mac / Windows)</div>
+        </div>
+      </div>
+
+      <!-- ── VM vs CONTAINER ── -->
+      <div class="sec-label sec-label-purple mt-4 reveal">⚖️ CONTAINERS vs VIRTUAL MACHINES</div>
+      <p class="reveal" style="font-size:0.83rem;color:var(--text2);margin-bottom:1rem;">This is one of Docker's biggest advantages — containers are much lighter than VMs.</p>
+
+      <div class="grid-2 reveal">
+        <div class="card card-glow card-blue">
+          <div class="card-icon icon-blue">🐳</div>
+          <div class="card-title text-cyan">Docker Container</div>
+          <div class="card-body">
+            <p>Shares the host OS kernel. Only packages the app and its dependencies.</p>
+            <ul style="margin-top:0.5rem;list-style:disc;padding-left:1.2rem;font-size:0.78rem;color:var(--text2);">
+              <li>Starts in milliseconds</li>
+              <li>Uses MB of disk space</li>
+              <li>Dozens can run on one machine</li>
+              <li>Portable across any OS</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card card-glow card-purple">
+          <div class="card-icon icon-purple">🖥️</div>
+          <div class="card-title text-purple">Virtual Machine</div>
+          <div class="card-body">
+            <p>Includes a full OS inside. Requires a hypervisor to run.</p>
+            <ul style="margin-top:0.5rem;list-style:disc;padding-left:1.2rem;font-size:0.78rem;color:var(--text2);">
+              <li>Takes minutes to start</li>
+              <li>Uses GB of disk space</li>
+              <li>Few can run on one machine</li>
+              <li>Stronger isolation</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ── CORE CONCEPTS ── -->
+    <section class="section">
+      <div class="sec-label sec-label-blue">🧠 CORE CONCEPTS</div>
+      <h2 class="sec-title">Images, Containers, <span class="accent-blue">Registries</span></h2>
+
+      <div class="steps reveal">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <div class="step-title">Dockerfile — the recipe</div>
+            <div class="step-body">A text file with instructions for building your image. Like a recipe telling Docker exactly what ingredients to include.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <div class="step-title">Image — the blueprint</div>
+            <div class="step-body">A read-only snapshot built from a Dockerfile. Like a template. You can share images via Docker Hub (a public registry).</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <div class="step-title">Container — the running instance</div>
+            <div class="step-body">A live, running copy of an image. You can run many containers from one image — like printing many copies from one master template.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <div class="step-title">Registry — the library</div>
+            <div class="step-body">Where images are stored and shared. Docker Hub is the public one. Companies often run private registries (AWS ECR, GCR, etc.).</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── DOCKERFILE EXAMPLE ── -->
+      <div class="sec-label sec-label-green mt-3 reveal">📄 A SIMPLE DOCKERFILE</div>
+      <div class="code-block reveal">
+        <div class="code-lang">DOCKERFILE</div>
+        <span class="c-cmt"># Start from an official Python base image</span><br>
+        <span class="c-kw">FROM</span> python:3.11-slim<br>
+        <br>
+        <span class="c-cmt"># Set the working directory inside the container</span><br>
+        <span class="c-kw">WORKDIR</span> /app<br>
+        <br>
+        <span class="c-cmt"># Copy dependencies file and install them</span><br>
+        <span class="c-kw">COPY</span> requirements.txt .<br>
+        <span class="c-kw">RUN</span> pip install -r requirements.txt<br>
+        <br>
+        <span class="c-cmt"># Copy the rest of your app code</span><br>
+        <span class="c-kw">COPY</span> . .<br>
+        <br>
+        <span class="c-cmt"># Tell Docker which port to expose</span><br>
+        <span class="c-kw">EXPOSE</span> 8000<br>
+        <br>
+        <span class="c-cmt"># The command to run when the container starts</span><br>
+        <span class="c-kw">CMD</span> [<span class="c-str">"python"</span>, <span class="c-str">"app.py"</span>]
+      </div>
+
+      <!-- ── ESSENTIAL COMMANDS ── -->
+      <div class="sec-label sec-label-amber mt-3 reveal">⚡ ESSENTIAL COMMANDS</div>
+      <div class="code-block reveal">
+        <div class="code-lang">BASH</div>
+        <span class="c-cmt"># Build an image from a Dockerfile</span><br>
+        <span class="c-cmd">docker build</span> <span class="c-flag">-t</span> my-app:latest .<br>
+        <br>
+        <span class="c-cmt"># Run a container from an image</span><br>
+        <span class="c-cmd">docker run</span> <span class="c-flag">-d -p</span> 8000:8000 my-app:latest<br>
+        <br>
+        <span class="c-cmt"># List running containers</span><br>
+        <span class="c-cmd">docker ps</span><br>
+        <br>
+        <span class="c-cmt"># View container logs</span><br>
+        <span class="c-cmd">docker logs</span> &lt;container-id&gt;<br>
+        <br>
+        <span class="c-cmt"># Execute a command inside a running container</span><br>
+        <span class="c-cmd">docker exec</span> <span class="c-flag">-it</span> &lt;container-id&gt; bash<br>
+        <br>
+        <span class="c-cmt"># Stop and remove a container</span><br>
+        <span class="c-cmd">docker stop</span> &lt;container-id&gt; &amp;&amp; <span class="c-cmd">docker rm</span> &lt;container-id&gt;<br>
+        <br>
+        <span class="c-cmt"># Pull a public image from Docker Hub</span><br>
+        <span class="c-cmd">docker pull</span> nginx:latest
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ── DOCKER COMPOSE ── -->
+    <section class="section">
+      <div class="sec-label sec-label-purple">🔗 DOCKER COMPOSE</div>
+      <h2 class="sec-title">Running <span class="accent-purple">multiple containers</span> together</h2>
+      <p class="sec-sub">Real apps need multiple services — a web server, a database, maybe a cache. Docker Compose lets you define all of them in one file.</p>
+
+      <div class="flow-diagram reveal">
+        <div class="flow-node fn-blue">
+          <div class="node-icon">🌐</div>
+          <div class="node-label">Web Container</div>
+          <div class="node-sub">nginx:80</div>
+        </div>
+        <div class="flow-arrow"></div>
+        <div class="flow-node fn-cyan">
+          <div class="node-icon">⚙️</div>
+          <div class="node-label">App Container</div>
+          <div class="node-sub">python:8000</div>
+        </div>
+        <div class="flow-arrow"></div>
+        <div class="flow-node fn-purple">
+          <div class="node-icon">🗄️</div>
+          <div class="node-label">DB Container</div>
+          <div class="node-sub">postgres:5432</div>
+        </div>
+        <div class="flow-arrow"></div>
+        <div class="flow-node fn-green">
+          <div class="node-icon">⚡</div>
+          <div class="node-label">Cache Container</div>
+          <div class="node-sub">redis:6379</div>
+        </div>
+      </div>
+
+      <div class="code-block reveal">
+        <div class="code-lang">DOCKER-COMPOSE.YML</div>
+        <span class="c-kw">version:</span> <span class="c-str">'3.9'</span><br>
+        <span class="c-kw">services:</span><br>
+        &nbsp;&nbsp;<span class="c-cmd">web:</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="c-kw">image:</span> nginx:latest<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="c-kw">ports:</span> [<span class="c-str">"80:80"</span>]<br>
+        &nbsp;&nbsp;<span class="c-cmd">app:</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="c-kw">build:</span> .<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="c-kw">ports:</span> [<span class="c-str">"8000:8000"</span>]<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="c-kw">depends_on:</span> [db, redis]<br>
+        &nbsp;&nbsp;<span class="c-cmd">db:</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="c-kw">image:</span> postgres:15<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="c-kw">environment:</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-kw">POSTGRES_PASSWORD:</span> <span class="c-str">secret</span><br>
+        &nbsp;&nbsp;<span class="c-cmd">redis:</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="c-kw">image:</span> redis:7
+      </div>
+      <div class="code-block reveal">
+        <div class="code-lang">BASH</div>
+        <span class="c-cmt"># Start all services</span><br>
+        <span class="c-cmd">docker compose up</span> <span class="c-flag">-d</span><br>
+        <span class="c-cmt"># Stop all services</span><br>
+        <span class="c-cmd">docker compose down</span>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ── COMMON MISTAKES ── -->
+    <section class="section">
+      <div class="sec-label sec-label-amber">⚠️ COMMON MISTAKES</div>
+      <h2 class="sec-title">What beginners <span class="accent-cyan">get wrong</span></h2>
+      <div class="grid-2 reveal">
+        <div class="info-box ib-red">
+          <span class="ib-label">❌ MISTAKE 1</span>
+          <strong>Running everything as root.</strong> Containers should run as a non-root user. Add <code>USER appuser</code> in your Dockerfile.
+        </div>
+        <div class="info-box ib-red">
+          <span class="ib-label">❌ MISTAKE 2</span>
+          <strong>Storing data inside containers.</strong> Containers are ephemeral — data inside them disappears when the container stops. Use <strong>volumes</strong> for persistent data.
+        </div>
+        <div class="info-box ib-red">
+          <span class="ib-label">❌ MISTAKE 3</span>
+          <strong>Using the :latest tag in production.</strong> <code>nginx:latest</code> will grab whatever's newest — it might break your app. Pin specific versions: <code>nginx:1.25.3</code>.
+        </div>
+        <div class="info-box ib-red">
+          <span class="ib-label">❌ MISTAKE 4</span>
+          <strong>One giant container for everything.</strong> The Docker philosophy is one process per container. Run your app, database, and cache in separate containers.
+        </div>
+      </div>
+    </section>
+
+    <!-- ── SUMMARY ── -->
+    <section class="section" style="padding-top:0;">
+      <div class="summary-box reveal">
+        <div class="summary-title">💡 Quick Summary — Docker</div>
+        <div class="summary-points">
+          <div class="summary-point">Docker packages your app + dependencies into portable <strong>containers</strong> that run identically anywhere.</div>
+          <div class="summary-point">A <strong>Dockerfile</strong> defines how to build an image. An <strong>image</strong> is a blueprint. A <strong>container</strong> is a running instance.</div>
+          <div class="summary-point">Containers share the host kernel — they're faster and lighter than VMs, but offer less isolation.</div>
+          <div class="summary-point">Use <strong>Docker Compose</strong> for multi-container apps (web + database + cache).</div>
+          <div class="summary-point">Always use <strong>specific version tags</strong>, <strong>non-root users</strong>, and <strong>volumes</strong> for data in production.</div>
+        </div>
+      </div>
+      <div class="flex gap-sm mt-2 reveal">
+        <a href="kubernetes.html" class="btn btn-primary">Next: Kubernetes →</a>
+        <a href="linux-basics.html" class="btn btn-ghost">← Linux Basics</a>
+      </div>
+    </section>
+
+  </div>
+</main>
+<div id="footer-placeholder"></div>
+<script src="scripts/main.js"></script>
+</body>
+</html>

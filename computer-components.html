@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Computer Hardware — ITBase</title>
+  <link rel="stylesheet" href="styles/main.css" />
+</head>
+<body>
+<div id="navbar-placeholder"></div>
+<main>
+
+  <header class="page-hero">
+    <div class="page-hero-inner">
+      <div class="breadcrumb"><a href="index.html">Home</a> / Computer Hardware</div>
+      <div class="tags"><span class="tag tag-cyan">HARDWARE</span><span class="tag tag-blue">BEGINNER FRIENDLY</span></div>
+      <h1>🖥️ Computer Hardware</h1>
+      <p>Understanding the physical components that make up every computer — from CPUs to storage to motherboards.</p>
+    </div>
+  </header>
+
+  <div class="section-inner" style="max-width:900px;margin:0 auto;padding:0 1.5rem;">
+
+    <section class="section">
+      <div class="sec-label sec-label-cyan">📖 EXPLAIN LIKE I'M A BEGINNER</div>
+      <h2 class="sec-title">The <span class="accent-cyan">Motherboard</span> — everything connects here</h2>
+
+      <div class="info-box ib-cyan reveal">
+        <span class="ib-label">💡 THE ANALOGY</span>
+        The motherboard is like a city's road network. Every component (CPU, RAM, storage) is a building in the city. The motherboard is the set of roads connecting them — without it, nothing can communicate.
+      </div>
+
+      <!-- ── MOTHERBOARD DIAGRAM ── -->
+      <div class="motherboard reveal">
+        <div class="motherboard-label">MOTHERBOARD</div>
+        <div class="mb-grid">
+          <div class="mb-component">
+            <div class="mb-icon">🧠</div>
+            <div class="mb-name" style="color:var(--cyan);">CPU</div>
+            <div class="mb-spec">The processor — brain</div>
+          </div>
+          <div class="mb-component">
+            <div class="mb-icon">💾</div>
+            <div class="mb-name" style="color:var(--blue);">RAM</div>
+            <div class="mb-spec">Short-term memory</div>
+          </div>
+          <div class="mb-component">
+            <div class="mb-icon">🎮</div>
+            <div class="mb-name" style="color:var(--purple);">GPU</div>
+            <div class="mb-spec">Graphics processor</div>
+          </div>
+          <div class="mb-component">
+            <div class="mb-icon">💿</div>
+            <div class="mb-name" style="color:var(--green);">SSD/HDD</div>
+            <div class="mb-spec">Long-term storage</div>
+          </div>
+          <div class="mb-component">
+            <div class="mb-icon">🔌</div>
+            <div class="mb-name" style="color:var(--amber);">PSU</div>
+            <div class="mb-spec">Power supply</div>
+          </div>
+          <div class="mb-component">
+            <div class="mb-icon">🌐</div>
+            <div class="mb-name" style="color:var(--text2);">NIC</div>
+            <div class="mb-spec">Network card</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section class="section">
+      <div class="sec-label sec-label-blue">🧠 CPU — THE BRAIN</div>
+      <h2 class="sec-title">How the <span class="accent-blue">CPU</span> works</h2>
+
+      <div class="info-box ib-blue reveal">
+        <span class="ib-label">💡 ANALOGY</span>
+        The CPU is like a chef in a kitchen. A single-core CPU is one chef. A 16-core CPU is 16 chefs working simultaneously on different dishes. More cores = more parallel work.
+      </div>
+
+      <div class="flow-diagram reveal">
+        <div class="flow-node fn-blue">
+          <div class="node-icon">📥</div>
+          <div class="node-label">Fetch</div>
+          <div class="node-sub">get instruction from RAM</div>
+        </div>
+        <div class="flow-arrow"></div>
+        <div class="flow-node fn-cyan">
+          <div class="node-icon">🔍</div>
+          <div class="node-label">Decode</div>
+          <div class="node-sub">understand the instruction</div>
+        </div>
+        <div class="flow-arrow"></div>
+        <div class="flow-node fn-purple">
+          <div class="node-icon">⚙️</div>
+          <div class="node-label">Execute</div>
+          <div class="node-sub">perform the operation</div>
+        </div>
+        <div class="flow-arrow"></div>
+        <div class="flow-node fn-green">
+          <div class="node-icon">📤</div>
+          <div class="node-label">Write-back</div>
+          <div class="node-sub">store the result</div>
+        </div>
+      </div>
+
+      <div class="grid-3 reveal mt-2">
+        <div class="info-box ib-blue" style="margin:0;"><span class="ib-label">CORES</span>Independent processing units. More cores = better multitasking.</div>
+        <div class="info-box ib-cyan" style="margin:0;"><span class="ib-label">CLOCK SPEED</span>GHz = cycles per second. Higher = faster at single tasks.</div>
+        <div class="info-box ib-purple" style="margin:0;"><span class="ib-label">CACHE</span>Tiny ultra-fast RAM built into the CPU. L1 fastest, L3 largest.</div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section class="section">
+      <div class="sec-label sec-label-green">💾 RAM — SHORT-TERM MEMORY</div>
+      <h2 class="sec-title">RAM vs <span class="accent-green">Storage</span></h2>
+
+      <div class="info-box ib-green reveal">
+        <span class="ib-label">💡 ANALOGY</span>
+        RAM = your desk workspace. Storage (SSD/HDD) = your filing cabinet. Your desk (RAM) holds what you're actively working on. When you close a program, it goes back in the cabinet (storage). More desk space = more programs open at once.
+      </div>
+
+      <table class="compare-table reveal">
+        <thead><tr><th></th><th>RAM</th><th>SSD</th><th>HDD</th></tr></thead>
+        <tbody>
+          <tr><td>Speed</td><td class="text-green">~50 GB/s</td><td class="text-cyan">~5 GB/s</td><td class="text-amber">~150 MB/s</td></tr>
+          <tr><td>Persistence</td><td class="text-red">Lost on power off</td><td class="text-green">Persists</td><td class="text-green">Persists</td></tr>
+          <tr><td>Typical size</td><td>8–64 GB</td><td>256 GB–4 TB</td><td>1–20 TB</td></tr>
+          <tr><td>Use case</td><td>Active programs</td><td>OS + apps + files</td><td>Archives, backups</td></tr>
+          <tr><td>Cost per GB</td><td class="text-red">Most expensive</td><td class="text-amber">Medium</td><td class="text-green">Cheapest</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <div class="divider"></div>
+
+    <section class="section">
+      <div class="sec-label sec-label-amber">⚠️ COMMON MISTAKES</div>
+      <h2 class="sec-title">What beginners <span class="accent-cyan">get wrong</span></h2>
+      <div class="grid-2 reveal">
+        <div class="info-box ib-red"><span class="ib-label">❌ MISTAKE 1</span><strong>Confusing RAM with storage.</strong> "My computer only has 8GB" — do you mean RAM or SSD? They're completely different things.</div>
+        <div class="info-box ib-red"><span class="ib-label">❌ MISTAKE 2</span><strong>Thinking more GHz always = faster.</strong> A 4-core 3.5GHz CPU often outperforms an 8-core 2.0GHz CPU for single-threaded tasks.</div>
+        <div class="info-box ib-red"><span class="ib-label">❌ MISTAKE 3</span><strong>Ignoring cooling.</strong> CPUs throttle when hot — slowing down to avoid damage. Good cooling is essential for sustained performance.</div>
+        <div class="info-box ib-red"><span class="ib-label">❌ MISTAKE 4</span><strong>Not checking RAM compatibility.</strong> DDR4 and DDR5 are not interchangeable. Check your motherboard's supported specs before buying.</div>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:0;">
+      <div class="summary-box reveal">
+        <div class="summary-title">💡 Quick Summary — Computer Hardware</div>
+        <div class="summary-points">
+          <div class="summary-point"><strong>CPU</strong> = processor (brain). Cores handle parallel work. GHz = speed. Cache = ultra-fast built-in memory.</div>
+          <div class="summary-point"><strong>RAM</strong> = temporary workspace. Fast but volatile (lost on power off). More = more apps open at once.</div>
+          <div class="summary-point"><strong>SSD</strong> = fast permanent storage. <strong>HDD</strong> = slow, cheap permanent storage.</div>
+          <div class="summary-point"><strong>Motherboard</strong> connects everything. Determines what CPU/RAM types you can use.</div>
+          <div class="summary-point"><strong>GPU</strong> handles graphics and parallel computing (also used for AI/ML workloads).</div>
+        </div>
+      </div>
+      <div class="flex gap-sm mt-2 reveal">
+        <a href="linux-basics.html" class="btn btn-primary">Next: Linux Basics →</a>
+        <a href="osi-model.html" class="btn btn-ghost">← OSI Model</a>
+      </div>
+    </section>
+
+  </div>
+</main>
+<div id="footer-placeholder"></div>
+<script src="scripts/main.js"></script>
+</body>
+</html>
